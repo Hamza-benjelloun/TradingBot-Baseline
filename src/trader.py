@@ -1,10 +1,5 @@
-from lumibot.strategies.strategy import Strategy
-from src.broker import BASE_URL,API_KEY,API_SECRET
-
-
-
+from src.broker import init_rest_client
 import pandas as pd
-import numpy as np
 
 class Trader:
     def __init__(self, initial_capital=100000.0, risk_tolerance=0.02, max_positions=10):
@@ -154,13 +149,13 @@ class SimpleTrader(Trader):
             quantity = self.portfolio.get(ticker, {}).get('quantity', 0)
             self.sell(ticker, price, quantity)
 
-# Usage
-data = pd.DataFrame({
-    'Close': [100, 102, 104, 103, 105, 107, 106, 108, 109, 107]
-})
+# # Usage
+# data = pd.DataFrame({
+#     'Close': [100, 102, 104, 103, 105, 107, 106, 108, 109, 107]
+# })
 
-trader = SimpleTrader(initial_capital=100000)
-current_prices = {'AAPL': 150}
-trader.execute_trade(1, 'AAPL', current_prices['AAPL'], stop_loss=140)
-print(trader.get_trades())
-print("Portfolio Value:", trader.calculate_portfolio_value(current_prices))
+# trader = SimpleTrader(initial_capital=100000)
+# current_prices = {'AAPL': 150}
+# trader.execute_trade(1, 'AAPL', current_prices['AAPL'], stop_loss=140)
+# print(trader.get_trades())
+# print("Portfolio Value:", trader.calculate_portfolio_value(current_prices))
