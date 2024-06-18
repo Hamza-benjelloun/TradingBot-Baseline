@@ -2,7 +2,7 @@ from src.broker import init_rest_client
 import pandas as pd
 
 class Trader:
-    def __init__(self, initial_capital=100000.0, risk_tolerance=0.02, max_positions=10):
+    def __init__(self, risk_tolerance=0.02, max_positions=10):
         """
         Initialize the Trader with an initial capital, risk tolerance, and maximum number of positions.
 
@@ -10,12 +10,13 @@ class Trader:
         :param risk_tolerance: The percentage of capital to risk per trade.
         :param max_positions: The maximum number of different assets to hold.
         """
-        self.initial_capital = initial_capital
-        self.cash = initial_capital
         self.portfolio = {}
         self.trades = []
         self.risk_tolerance = risk_tolerance
         self.max_positions = max_positions
+        self.client = init_rest_client()
+        self.initial_capital = int(self.client.get_account().cash)
+        self.cash = self.initial_capital
 
     def is_market_open(self):
         """
@@ -23,8 +24,8 @@ class Trader:
 
         :return: Boolean indicating if the market is open.
         """
-        # Placeholder for actual market hours check
-        return True
+        clock = self.client.get_clock()
+        return clock.is_open
 
     def has_sufficient_buying_power(self, price, quantity):
         """
@@ -63,11 +64,11 @@ class Trader:
         :param stop_loss: The stop-loss price.
         :return: The quantity to buy.
         """
-        risk_per_share = price - stop_loss
+        risk_per_share = price - stop_loss # 100 - 90 = 10
         if risk_per_share <= 0:
             return 0
-        risk_per_trade = self.initial_capital * self.risk_tolerance
-        quantity = risk_per_trade // risk_per_share
+        risk_per_trade = self.initial_capital * self.risk_tolerance # 100_000 * 0.02 = 2000
+        quantity = risk_per_trade // risk_per_share # 2000 // 10 = 200
         return int(quantity)
 
     def buy(self, ticker, price, stop_loss):
@@ -148,6 +149,7 @@ class SimpleTrader(Trader):
         elif signal == -1:
             quantity = self.portfolio.get(ticker, {}).get('quantity', 0)
             self.sell(ticker, price, quantity)
+
 
 # # Usage
 # data = pd.DataFrame({
