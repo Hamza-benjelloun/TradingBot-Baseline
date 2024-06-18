@@ -12,7 +12,7 @@ class RSIStrategy(Strategy):
         self.oversold = oversold
 
     def apply_indicators(self):
-        self.data['rsi'] = talib.RSI(self.data['Close'], timeperiod=self.rsi_period)
+        self.data['rsi'] = talib.RSI(self.data['close'], timeperiod=self.rsi_period)
 
     def generate_signals(self):
         self.signals['signal'] = 0.0
