@@ -8,17 +8,24 @@ A baseline Python bot for trading.
    ```bash
    git clone https://github.com/Hamza-benjelloun/TradingBot-Baseline.git
    ```
-2. Install the required packages:
+2. Install the required packages in your virtual environement:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the bot:
+3. Install Pre Commit Hooks:
    ```bash
-   python bot.py
+   pre-commit install
    ```
-4. Run the UI dashboard:
+4. Run tests (Make sure you are using Bash):
    ```bash
-   python app.py
+   chmod +x run_test.sh && alias test="./run_test.sh"
+   ```
+   ```bash
+   test [base_file_name]
+   ```
+   or
+   ```bash
+   test all
    ```
 
 ## Trading Strategies

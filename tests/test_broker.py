@@ -1,8 +1,10 @@
-from client import get_historical_data
+import datetime
+
 from alpaca.data import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
-import datetime
 from pandas import DataFrame
+
+from src.client import get_historical_data
 
 
 def test_broker():

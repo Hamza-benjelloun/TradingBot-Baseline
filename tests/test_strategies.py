@@ -1,11 +1,13 @@
-from strategies.base import Strategy
-from src.strategies.rsi import RSIStrategy
-from src.client import get_historical_data
-from alpaca.data import StockBarsRequest
-from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 import datetime
+
 import pandas as pd
 import pytest
+from alpaca.data import StockBarsRequest
+from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
+
+from src.client import get_historical_data
+from src.strategies.base import Strategy
+from src.strategies.rsi import RSIStrategy
 
 
 @pytest.fixture

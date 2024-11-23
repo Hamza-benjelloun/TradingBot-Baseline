@@ -1,0 +1,30 @@
+repos:
+  # Apply black for Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.9.1  # Use the latest stable version
+    hooks:
+      - id: black
+
+  # Sort imports using isort
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0  # Use the latest stable version
+    hooks:
+      - id: isort
+
+  # Remove trailing whitespace and fix end-of-file issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # Use the latest stable version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml  # Validate YAML syntax
+      - id: check-added-large-files  # Prevent committing very large files
+
+  # Custom hook to run your script
+  - repo: local
+    hooks:
+      - id: run-tests
+        name: Run custom test script
+        entry: ./run_test.sh all  # Run your custom script with 'all' argument
+        language: system  # Use the system shell to run the script
+        types: [bash]
