@@ -6,7 +6,7 @@ A baseline Python bot for trading.
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/Hamza-benjelloun/TradingBot-Baseline.git
    ```
 2. Install the required packages:
    ```bash
