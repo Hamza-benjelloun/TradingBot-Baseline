@@ -106,7 +106,7 @@ The Parabolic SAR provides potential reversals in the market price direction, wh
   - [x] Main Broker Class
   - [ ] Main Backtesting Class
   - [x] Implement RSI Strategy
-  - [ ] Implement Stochastic RSI Strategy
+  - [x] Implement Stochastic RSI Strategy
   - [ ] Implement EMA Strategy
   - [ ] Implement Bollinger Bands Strategy
   - [ ] Implement MACD Strategy
