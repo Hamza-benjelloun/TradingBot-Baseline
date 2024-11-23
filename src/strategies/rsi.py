@@ -1,5 +1,5 @@
 # Example subclass implementing a simple RSI-based strategy
-from .main import Strategy
+from .base import Strategy
 import talib
 import pandas as pd
 

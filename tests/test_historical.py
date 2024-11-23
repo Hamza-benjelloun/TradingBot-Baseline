@@ -1,7 +1,8 @@
-from src.broker import get_historical_data
+from client import get_historical_data
 from alpaca.data import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
-from pprint import pprint as print
+from pandas import DataFrame
+
 
 def test_get_historical_data():
     historical_data = get_historical_data()
@@ -11,7 +12,10 @@ def test_get_historical_data():
         end="2022-01-01",
         timeframe=TimeFrame.Day,
     )
-    data = historical_data.get_stock_bars(params)
-    print(data)
-    print(type(data))
-    assert data is not None
+    bars = historical_data.get_stock_bars(params).df
+    assert isinstance(bars, DataFrame)
+    assert bars.shape[0] == 252
+    assert (
+        bars.columns
+        == ["open", "high", "low", "close", "volume", "trade_count", "vwap"]
+    ).all()

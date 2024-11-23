@@ -1,6 +1,9 @@
-from src.strategies.main import Strategy
+from strategies.base import Strategy
 from src.strategies.rsi import RSIStrategy
-from src.broker import get_trading_client
+from src.client import get_historical_data
+from alpaca.data import StockBarsRequest
+from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
+import datetime
 import pandas as pd
 import pytest
 
@@ -21,17 +24,21 @@ def strategy():
 
 @pytest.fixture
 def rsi_strategy(broker):
-    data = broker.get_bars(
-        symbol="AAPL",
-        timeframe="1Min",
-        limit=100,
+    data = broker.get_stock_bars(
+        StockBarsRequest(
+            symbol_or_symbols="AAPL",
+            timeframe=TimeFrame(amount=1, unit=TimeFrameUnit.Minute),
+            limit=100,
+            start=datetime.datetime(2021, 2, 11),
+            end=datetime.datetime(2024, 2, 11),
+        )
     ).df
     return RSIStrategy(data)
 
 
 @pytest.fixture
 def broker():
-    return get_trading_client()
+    return get_historical_data()
 
 
 def test_main(strategy):

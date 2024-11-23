@@ -1,1 +1,1 @@
-python -m pytest -vvv -s tests/$1
+python -m pytest -vvv -s tests/test_$1.py

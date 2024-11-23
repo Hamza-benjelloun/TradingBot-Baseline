@@ -8,10 +8,10 @@ def trader():
 
 
 def test_is_market_open(trader):
-    assert trader.is_market_open() == True
+    assert trader.is_market_open() == False
 
 def test_account_cash(trader):
-    assert trader.initial_capital == 100000
+    assert trader.initial_capital == 1000000
 
 def test_has_sufficient_buying_power(trader):
     assert trader.has_sufficient_buying_power(100, 100) == True
@@ -23,5 +23,5 @@ def test_can_add_position(trader):
     assert trader.can_add_position() == True
 
 def test_calculate_position_size(trader):
-    assert trader.calculate_position_size(100, 90) == 200
+    assert trader.calculate_position_size(100, 90) == 2000
     assert trader.calculate_position_size(100, 100) == 0

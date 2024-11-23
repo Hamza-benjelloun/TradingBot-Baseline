@@ -1,4 +1,4 @@
-from src.broker import get_trading_client
+from src.client import get_trading_client
 import pandas as pd
 
 class Trader:

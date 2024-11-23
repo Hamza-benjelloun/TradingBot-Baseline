@@ -102,26 +102,39 @@ The Parabolic SAR provides potential reversals in the market price direction, wh
 
 - **Core Development:**
   - [x] Main Class for the Strategy
-  - [ ] Add Stochastic RSI and EMA Crossover Strategy
-  - [ ] Add Bollinger Bands and MACD Strategy
-  - [ ] Add Parabolic SAR and ADX Strategy
-  - [ ] Main Trading Class
-  - [ ] Main Broker Class
+  - [x] Main Trading Class
+  - [x] Main Broker Class
   - [ ] Main Backtesting Class
+  - [x] Implement RSI Strategy
+  - [ ] Implement Stochastic RSI Strategy
+  - [ ] Implement EMA Strategy
+  - [ ] Implement Bollinger Bands Strategy
+  - [ ] Implement MACD Strategy
+  - [ ] Implement Parabolic SAR Strategy
+  - [ ] Implement ADX Strategy
+  - [ ] Implement Stochastic RSI and EMA Crossover Strategy
+  - [ ] Implement Bollinger Bands and MACD Strategy
+  - [ ] Implement Parabolic SAR and ADX Strategy
 
 - **Backtesting:**
-  - [ ] Implement Backtesting Framework
-  - [ ] Backtesting for Stochastic RSI and EMA Crossover Strategy
-  - [ ] Backtesting for Bollinger Bands and MACD Strategy
-  - [ ] Backtesting for Parabolic SAR and ADX Strategy
+  - [ ] Backtesting RSI Strategy
+  - [ ] Backtesting Stochastic RSI Strategy
+  - [ ] Backtesting EMA Strategy
+  - [ ] Backtesting Bollinger Bands Strategy
+  - [ ] Backtesting MACD Strategy
+  - [ ] Backtesting Parabolic SAR Strategy
+  - [ ] Backtesting ADX Strategy
+  - [ ] Backtesting Stochastic RSI and EMA Crossover Strategy
+  - [ ] Backtesting Bollinger Bands and MACD Strategy
+  - [ ] Backtesting Parabolic SAR and ADX Strategy
 
 - **Optimization and Improvements:**
   - [ ] Optimize Execution Speed for Scalping Strategies
   - [ ] Parameter Tuning for Each Strategy
-  - [ ] Implement Risk Management Rules (e.g., Stop Loss, Take Profit)
+  - [x] Implement Risk Management Rules (e.g., Stop Loss, Take Profit)
   - [ ] Add Performance Metrics and Reporting
 
-- **User Interface:**
+- **User Interface (Optional):**
   - [ ] Develop Interactive UI for Strategy Management
   - [ ] Visualization of Strategy Performance
   - [ ] Real-time Monitoring Dashboard
@@ -133,7 +146,7 @@ The Parabolic SAR provides potential reversals in the market price direction, wh
   - [ ] Tutorials and Examples
 
 - **Testing:**
-  - [ ] Unit Tests for Core Components
+  - [x] Unit Tests for Core Components
   - [ ] Integration Tests for Strategies
   - [ ] End-to-End Tests for Trading Bot
 
@@ -141,9 +154,3 @@ The Parabolic SAR provides potential reversals in the market price direction, wh
   - [ ] Setup Continuous Integration and Deployment (CI/CD) Pipeline
   - [ ] Cloud Deployment (e.g., AWS, Azure)
   - [ ] Scalability and Load Testing
-
-- **Community and Contribution:**
-  - [ ] Contribution Guidelines
-  - [ ] Code of Conduct
-  - [ ] Issue and Feature Request Templates
-  - [ ] Regular Updates and Release Notes

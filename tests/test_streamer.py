@@ -1,4 +1,4 @@
-from src.broker import get_streamer
+from client import get_streamer
 
 async def stream_handler(quote):
     print(quote)

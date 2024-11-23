@@ -1,4 +1,4 @@
-from src.broker import get_historical_data
+from client import get_historical_data
 from alpaca.data import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 import datetime
@@ -16,6 +16,9 @@ def test_broker():
             end=datetime.datetime(2024, 2, 11),
         )
     ).df
-    assert isinstance(bars,DataFrame)
+    assert isinstance(bars, DataFrame)
     assert bars.shape[0] == 100
-    assert (bars.columns == ['open', 'high', 'low', 'close', 'volume', 'trade_count', 'vwap']).all()
+    assert (
+        bars.columns
+        == ["open", "high", "low", "close", "volume", "trade_count", "vwap"]
+    ).all()
