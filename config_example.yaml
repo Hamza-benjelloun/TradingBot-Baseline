@@ -1,0 +1,6 @@
+# config.yaml
+broker:
+  API_KEY: "<API_KEY>"
+  API_SECRET: "<API_SECRET>"
+  ENDPOINT_URL: "<ENDPOINT_URL>"
+  BASE_URL: "<BASE_URL>"

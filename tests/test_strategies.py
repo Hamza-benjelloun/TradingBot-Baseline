@@ -1,6 +1,6 @@
 from src.strategies.main import Strategy
 from src.strategies.rsi import RSIStrategy
-from src.broker import init_rest_client
+from src.broker import get_trading_client
 import pandas as pd
 import pytest
 
@@ -31,7 +31,7 @@ def rsi_strategy(broker):
 
 @pytest.fixture
 def broker():
-    return init_rest_client()
+    return get_trading_client()
 
 
 def test_main(strategy):

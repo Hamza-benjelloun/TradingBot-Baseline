@@ -1,38 +1,36 @@
-from lumibot.brokers import Alpaca
-import streamlit as st
-from alpaca_trade_api import REST 
+from alpaca.trading.client import TradingClient
+from alpaca.data.live import StockDataStream
+from alpaca.data.historical import StockHistoricalDataClient
+import yaml
 
 
+broker_config = yaml.safe_load(open("config.yaml", "r"))["broker"]
 
-API_KEY = st.secrets.get('API_KEY')
-API_SECRET = st.secrets.get('API_SECRET')
-BASE_URL = st.secrets.get('BASE_URL')
-IS_PAPER = st.secrets.get('PAPER', True)
+API_KEY = broker_config.get("API_KEY")
+API_SECRET = broker_config.get("API_SECRET")
+BASE_URL = broker_config.get("BASE_URL")
+IS_PAPER = broker_config.get("PAPER", True)
 
-ALPACA_CREDS = {
-    "API_KEY": API_KEY,
-    "API_SECRET": API_SECRET,
-    "PAPER": IS_PAPER,
-}
+assert API_KEY is not None, "API_KEY is missing in broker_config"
+assert API_SECRET is not None, "API_SECRET is missing in broker_config"
+assert BASE_URL is not None, "BASE_URL is missing in broker_config"
 
-@st.cache_resource
-def get_broker():
-    return Alpaca(ALPACA_CREDS)
+ALPACA_CREDS = {"api_key": API_KEY, "secret_key": API_SECRET, "paper": IS_PAPER}
 
-@st.cache_resource
-def init_rest_client():
-    return REST(base_url=BASE_URL, key_id=API_KEY, secret_key=API_SECRET)
 
-# @st.cache_resource
-# def get_streamer():
-#     return StockDataStream(
-#         api_key=API_KEY,
-#         secret_key=API_SECRET,
-#     )
+def get_trading_client():
+    return TradingClient(**ALPACA_CREDS)
 
-# @st.cache_resource
-# def get_historical_data():
-#     return StockHistoricalDataClient(
-#         api_key=API_KEY,
-#         secret_key=API_SECRET,
-#     )
+
+def get_streamer():
+    return StockDataStream(
+        api_key=API_KEY,
+        secret_key=API_SECRET,
+    )
+
+
+def get_historical_data():
+    return StockHistoricalDataClient(
+        api_key=API_KEY,
+        secret_key=API_SECRET,
+    )

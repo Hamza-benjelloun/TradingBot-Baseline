@@ -1,4 +1,4 @@
-from src.broker import init_rest_client
+from src.broker import get_trading_client
 import pandas as pd
 
 class Trader:
@@ -14,7 +14,7 @@ class Trader:
         self.trades = []
         self.risk_tolerance = risk_tolerance
         self.max_positions = max_positions
-        self.client = init_rest_client()
+        self.client = get_trading_client()
         self.initial_capital = int(self.client.get_account().cash)
         self.cash = self.initial_capital
 
@@ -64,11 +64,11 @@ class Trader:
         :param stop_loss: The stop-loss price.
         :return: The quantity to buy.
         """
-        risk_per_share = price - stop_loss # 100 - 90 = 10
+        risk_per_share = price - stop_loss
         if risk_per_share <= 0:
             return 0
-        risk_per_trade = self.initial_capital * self.risk_tolerance # 100_000 * 0.02 = 2000
-        quantity = risk_per_trade // risk_per_share # 2000 // 10 = 200
+        risk_per_trade = self.initial_capital * self.risk_tolerance
+        quantity = risk_per_trade // risk_per_share
         return int(quantity)
 
     def buy(self, ticker, price, stop_loss):
@@ -149,15 +149,3 @@ class SimpleTrader(Trader):
         elif signal == -1:
             quantity = self.portfolio.get(ticker, {}).get('quantity', 0)
             self.sell(ticker, price, quantity)
-
-
-# # Usage
-# data = pd.DataFrame({
-#     'Close': [100, 102, 104, 103, 105, 107, 106, 108, 109, 107]
-# })
-
-# trader = SimpleTrader(initial_capital=100000)
-# current_prices = {'AAPL': 150}
-# trader.execute_trade(1, 'AAPL', current_prices['AAPL'], stop_loss=140)
-# print(trader.get_trades())
-# print("Portfolio Value:", trader.calculate_portfolio_value(current_prices))
